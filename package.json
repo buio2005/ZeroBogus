@@ -1,0 +1,10 @@
+{
+  "name": "zerobogus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ZeroBogus - bogus/fake checker (MVP skeleton)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
