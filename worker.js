@@ -923,14 +923,90 @@ function html(basePath, lang) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${tr(lang, "ZeroBogus Suite", "ZeroBogus Suite")}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+      * { box-sizing: border-box; }
+      html { color-scheme: dark; }
+      body {
+        margin: 0;
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      a { color: inherit; text-decoration: none; }
+      button, input, select, textarea { font: inherit; }
+      .hidden { display: none !important; }
+      .inline-block { display: inline-block; }
+      .flex { display: flex; }
+      .grid { display: grid; }
+      .w-full { width: 100%; }
+      .w-\[100px\] { width: 100px; }
+      .h-\[100px\] { height: 100px; }
+      .min-h-\[160px\] { min-height: 160px; }
+      .max-w-6xl { max-width: 72rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .mb-3 { margin-bottom: .75rem; }
+      .mt-1 { margin-top: .25rem; }
+      .mt-2 { margin-top: .5rem; }
+      .mt-4 { margin-top: 1rem; }
+      .mt-6 { margin-top: 1.5rem; }
+      .mt-8 { margin-top: 2rem; }
+      .p-3 { padding: .75rem; }
+      .p-5 { padding: 1.25rem; }
+      .px-3 { padding-left: .75rem; padding-right: .75rem; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .py-2 { padding-top: .5rem; padding-bottom: .5rem; }
+      .py-3 { padding-top: .75rem; padding-bottom: .75rem; }
+      .py-10 { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+      .pb-4 { padding-bottom: 1rem; }
+      .gap-2 { gap: .5rem; }
+      .gap-3 { gap: .75rem; }
+      .gap-4 { gap: 1rem; }
+      .space-y-2 > * + * { margin-top: .5rem; }
+      .space-y-3 > * + * { margin-top: .75rem; }
+      .grid-cols-1 { grid-template-columns: 1fr; }
+      .grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .rounded-xl { border-radius: .75rem; }
+      .rounded-2xl { border-radius: 1rem; }
+      .border { border-width: 1px; border-style: solid; }
+      .border-slate-700 { border-color: #334155; }
+      .border-slate-800 { border-color: #1e293b; }
+      .bg-emerald-500 { background-color: #10b981; }
+      .bg-slate-900\/40 { background-color: rgba(15,23,42,.4); }
+      .bg-slate-900\/60 { background-color: rgba(15,23,42,.6); }
+      .bg-slate-950 { background-color: #020617; }
+      .text-left { text-align: left; }
+      .text-sm { font-size: .875rem; }
+      .text-xs { font-size: .75rem; }
+      .text-4xl { font-size: 2.25rem; }
+      .text-slate-100 { color: #f1f5f9; }
+      .text-slate-300 { color: #cbd5e1; }
+      .text-slate-400 { color: #94a3b8; }
+      .text-slate-500 { color: #64748b; }
+      .text-slate-950 { color: #020617; }
+      .text-emerald-300 { color: #6ee7b7; }
+      .font-semibold { font-weight: 600; }
+      .font-bold { font-weight: 700; }
+      .tracking-tight { letter-spacing: -.025em; }
+      .cursor-pointer { cursor: pointer; }
+      .select-none { user-select: none; }
+      .accent-emerald-400 { accent-color: #34d399; }
+      .items-center { align-items: center; }
+      .justify-between { justify-content: space-between; }
+      .hover\:bg-slate-800:hover { background-color: #1e293b; }
+      .hover\:bg-slate-900\/60:hover { background-color: rgba(15,23,42,.6); }
+      .hover\:bg-emerald-400:hover { background-color: #34d399; }
+      .hover\:underline:hover { text-decoration: underline; }
+      details.group .group-open\:inline { display: none; }
+      details.group[open] .group-open\:hidden { display: none; }
+      details.group[open] .group-open\:inline { display: inline; }
+      @media (min-width: 768px) {
+        .md\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+    </style>
   </head>
   <body class="bg-slate-950 text-slate-100">
     <div class="max-w-6xl mx-auto px-4 py-10">
       <div class="flex items-center justify-between gap-4">
         <div>
-		  <img src="https://tivustream.com/downloadzz/logo.png" class="h-[100px] w-[100px] mb-3" /
+          <img src="https://tivustream.com/downloadzz/logo.png" alt="ZeroBogus" class="h-[100px] w-[100px] mb-3" />
           <h1 class="text-4xl font-bold tracking-tight">ZeroBogus</h1>
           <p class="text-slate-300 mt-2">${tr(
             lang,
