@@ -1,54 +1,58 @@
 # ZeroBogus
 
-ZeroBogus è una suite multi-canale per identificare contenuti potenzialmente falsi/ingannevoli con report spiegabili:
+**🌐 English** · [🇮🇹 Italiano](README.it.md)
 
-- punteggio rischio `0-100`
-- verdetto (`low_risk`, `medium_risk`, `high_risk`)
-- motivazioni leggibili (il “perché”)
-- integrazione OSINT opzionale (URLScan) solo con consenso
+ZeroBogus is a multi-channel suite for spotting potentially false or misleading
+content, with explainable reports:
 
-ZeroBogus non fornisce un “vero/falso assoluto”: fornisce segnali e contesto per aiutare decisioni più sicure.
+- risk score `0-100`
+- verdict (`low_risk`, `medium_risk`, `high_risk`)
+- human-readable reasoning (the "why")
+- optional OSINT integration (URLScan), only with consent
 
-## Funzionalità principali
+ZeroBogus does not deliver an absolute "true/false" answer: it provides signals
+and context to support safer decisions.
+
+## Main features
 
 ### 1) Link Intelligence
-- rilevamento pattern phishing (protocollo, hostname, punycode, redirect, keyword sospette)
-- warning su tracking/affiliazione (`utm_*`, `gclid`, `fbclid`, `aff`, `ref`, ecc.)
-- supporto URLScan opzionale con consenso utente
+- phishing pattern detection (protocol, hostname, punycode, redirects, suspicious keywords)
+- warnings on tracking/affiliate parameters (`utm_*`, `gclid`, `fbclid`, `aff`, `ref`, and similar)
+- optional URLScan support, subject to user consent
 
 ### 2) News / Claim Check
-- analisi euristica su testo (sensazionalismo, urgenza, assenza fonti, numeri non supportati)
-- modalità “news da URL”: fetch pagina, estrazione testo e triage link sospetti nel contenuto
+- heuristic text analysis (sensationalism, urgency, missing sources, unsupported figures)
+- "news from URL" mode: page fetch, text extraction and triage of suspicious links in the content
 
 ### 3) Social Account Check
-- analisi rapida di handle / URL profilo per segnali di impersonazione
-- verifica host social, pattern nome, brand spoofing
+- quick analysis of handles and profile URLs for impersonation signals
+- social host verification, name patterns, brand spoofing
 
 ### 4) Image (preview)
-- controllo base input e messaggi orientativi
-- modulo forensics avanzato previsto in roadmap
+- basic input validation and guidance messages
+- an advanced forensics module is on the roadmap
 
-## Architettura repository
+## Repository layout
 
-- `worker.js`: versione principale per deploy Cloudflare Workers (produzione consigliata)
-- `server.js`: versione Node.js locale/self-host
-- `Dockerfile`: esecuzione container locale
-- `package.json`: script Node base
-- `README.md`: documentazione
-- `LICENSE`: licenza MIT
+- `worker.js`: main build for Cloudflare Workers deployment (recommended for production)
+- `server.js`: local / self-hosted Node.js build
+- `Dockerfile`: local container execution
+- `package.json`: base Node scripts
+- `README.md`: documentation
+- `LICENSE`: MIT license
 
-## Quick Start (consigliato): Cloudflare Workers
+## Quick start (recommended): Cloudflare Workers
 
-### 1. Deploy Worker
+### 1. Deploy the Worker
 1. Cloudflare -> Workers & Pages -> Create application -> Worker.
-2. Incolla il contenuto di `worker.js`.
+2. Paste the contents of `worker.js`.
 3. Deploy.
 
-### 2. Route pubblica
-Configura la route:
+### 2. Public route
+Configure the route:
 - `tivustream.com/zerobogus*`
 
-### 3. Variabili / Secret
+### 3. Variables / secrets
 Workers -> Settings -> Variables.
 
 Variables:
@@ -64,20 +68,20 @@ Variables:
 Secret:
 - `URLSCAN_API_KEY` = `<your-key>`
 
-### 4. Verifica
-- `GET /zerobogus/health` -> JSON con `runtime: cloudflare-worker`
-- `GET /zerobogus/` -> UI caricata
+### 4. Verify
+- `GET /zerobogus/health` -> JSON with `runtime: cloudflare-worker`
+- `GET /zerobogus/` -> UI loaded
 
-## Quick Start (alternativa): Node / Docker locale
+## Quick start (alternative): local Node / Docker
 
-### Node locale
+### Local Node
 ```bash
 npm start
 ```
-Apri:
+Open:
 - `http://localhost:3000`
 
-### Docker locale
+### Local Docker
 ```bash
 docker build -t zerobogus:local .
 docker run --rm -p 3000:3000 --name zerobogus zerobogus:local
@@ -92,34 +96,33 @@ docker run --rm -p 3000:3000 --name zerobogus zerobogus:local
 - `GET /api/history/<id>`
 - `DELETE /api/history`
 
-## Lingua IT/EN
+## IT/EN language
 
-La UI supporta un toggle lingua `IT/EN`:
+The UI supports an `IT/EN` language toggle:
 
-- querystring: `?lang=it` oppure `?lang=en`
-- pulsante in alto a destra per cambio rapido lingua
-- i messaggi principali UI e molte motivazioni vengono restituite nella lingua selezionata
+- querystring: `?lang=it` or `?lang=en`
+- a button in the top right corner for quick switching
+- the main UI messages and many of the reasons are returned in the selected language
 
-Esempi:
+Examples:
 - `https://tivustream.com/zerobogus/?lang=it`
 - `https://tivustream.com/zerobogus/?lang=en`
 
 ## Privacy by design
 
-- Nessun tracking cookie richiesto dal tool.
-- URLScan viene usato solo con consenso esplicito.
-- In Cloudflare Workers la cronologia è best-effort in memoria (può azzerarsi con restart/cold start).
-- In modalità News da URL il fetch pagina è limitato e con protezioni anti-SSRF.
+- No tracking cookies are required by the tool.
+- URLScan is used only with explicit consent.
+- On Cloudflare Workers, history is best-effort and kept in memory (it can reset on restart or cold start).
+- In "news from URL" mode the page fetch is capped and protected against SSRF.
 
 ## Roadmap
 
-- Persistenza cronologia con Cloudflare KV/D1 (opt-in).
-- Modulo image forensics privacy-friendly (hash percettivo, metadati, controlli tecnici).
-- Connettori OSINT aggiuntivi con consenso (es. Safe Browsing / VirusTotal).
+- History persistence with Cloudflare KV/D1 (opt-in).
+- Privacy-friendly image forensics module (perceptual hashing, metadata, technical checks).
+- Additional OSINT connectors with consent (e.g. Safe Browsing / VirusTotal).
 
+## Open source
 
-## Open Source
+MIT licensed. See `LICENSE`.
 
-Licenza MIT. Vedi `LICENSE`.
-
-Se usi questo progetto, una menzione a TivuStream è apprezzata.
+If you use this project, a mention of TivuStream is appreciated.
